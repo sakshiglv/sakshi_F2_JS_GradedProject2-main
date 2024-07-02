@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Viewer</title>
+    <!-- BootStrap Design -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Container -->
+    <div id="resumeContainer">
+
+        <!-- Navbar -->
+        <nav>
+            <!-- Logo -->
+            <!-- <img id="logo" src="media/logo.png" alt="logo"> Update : Github not tracking media folders. -->
+            <img id="logo" src="logo.png" alt="logo">
+            <!-- Search Input -->
+            <input type="text" id="searchJob" class="form-control me-2" placeholder="Search by keyword">
+            <!-- Search Buttons -->
+            <div class="btn-nav">
+                <button onclick="filterResumes()"><i class="bi bi-search" style="font-size: 22px;"></i></i></button>
+                <button onclick="clearResults()"><i class="bi bi-arrow-clockwise"
+                        style="font-size: 26px;"></i></i></button>
+                <button onclick="logout()"><i class="bi bi-box-arrow-right" style="font-size: 26px;"></i></button>
+            </div>
+        </nav>
+
+        <!-- Results -->
+        <div class="results" style="display: none;">
+
+            <!-- Results Navigation Buttons -->
+            <div class="page-button">
+
+                <button id="prevButton" onclick="navigate(-1)" disabled><i class="bi bi-chevron-left"
+                        style="font-size: 24px;"></i></button>
+                <button id="nextButton" onclick="navigate(1)" disabled><i class="bi bi-chevron-right"
+                        style="font-size: 24px;"></i></button>
+
+            </div>
+
+            <!-- Profile -->
+            <div class="profile-pic">
+                <img src="" id="profilePicture" alt="Profile Picture">
+            </div>
+            <div class="profile-info" id="profile-info">
+                <h2 id="name"></h2>
+                <span id="s-strong">Applied For:</span> <span id="appliedFor"></span><br>
+            </div>
+
+            <!-- Personal Information -->
+            <div class="info" id="info">
+                <span id="s-strong">Email:</span> <span id="email"></span><br>
+                <span id="s-strong">Phone Number:</span> <span id="phone"></span><br>
+                <span id="s-strong">Location:</span> <span id="location"></span><br>
+                <span id="s-strong">LinkedIn:</span> <a href="#" id="linkedin">LinkedIn Profile</a>
+            </div>
+
+            <!-- Work Experience -->
+            <div id="workExperience" class="work">
+                <h2>Work Experience</h2>
+                <hr class="rounded">
+                <div id="workExperienceDetails">
+                    <span id="s-strong">Company Name:</span> <span id="workCompanyName"></span><br>
+                    <span id="s-strong">Position:</span> <span id="workPosition"></span><br>
+                    <span id="s-strong">Start Date:</span> <span id="workStartDate"></span><br>
+                    <span id="s-strong">End Date:</span> <span id="workEndDate"></span><br>
+                    <span id="s-strong">Summary:</span> <span id="workSummary"></span>
+                </div>
+            </div>
+            <!-- Internships -->
+            <div id="internship" class="internship">
+                <h2>Internship</h2>
+                <hr class="rounded">
+                <div id="internshipDetails">
+                    <span id="s-strong">Company Name:</span> <span id="internshipCompanyName"></span><br>
+                    <span id="s-strong">Position:</span> <span id="internshipPosition"></span><br>
+                    <span id="s-strong">Start Date:</span> <span id="internshipStartDate"></span><br>
+                    <span id="s-strong">End Date:</span> <span id="internshipEndDate"></span><br>
+                    <span id="s-strong">Summary:</span> <span id="internshipSummary"></span>
+                </div>
+            </div>
+            <!-- Skills -->
+            <div id="skills" class="skills">
+                <h2>Skills</h2>
+                <hr class="rounded">
+                <div id="skillsDetails"></div>
+            </div>
+            <!-- Education -->
+            <div id="education">
+                <h2>Education</h2>
+                <hr class="rounded">
+                <div id="educationDetails"></div>
+            </div>
+            <!-- Projects -->
+            <div id="projects" class="projects">
+                <h2>Projects</h2>
+                <hr class="rounded">
+                <div id="projectDetails"></div>
+            </div>
+
+            <!-- Achievements -->
+            <div id="achievements" class="achievements">
+                <h2>Achievements</h2>
+                <hr class="rounded">
+                <div id="achievementDetails"></div>
+            </div>
+            <!-- Interests -->
+            <div id="interests" class="interests">
+                <h2>Interests</h2>
+                <hr class="rounded">
+                <div id="interestDetails"></div>
+            </div>
+            <!-- Nome -->
+            <div class="none">
+            </div>
+        </div>
+
+        <!-- No Result -->
+        <div class="modal fade" id="noResultsModal" tabindex="-1" aria-labelledby="noResultsModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="noResultsModalLabel">Search Result</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        No applications match your search criteria.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="resume.js" defer></script>
+</body>
+
+</html>

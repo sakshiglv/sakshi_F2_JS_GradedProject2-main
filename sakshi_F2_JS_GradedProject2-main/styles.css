@@ -1,0 +1,197 @@
+body {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: #fafaff;
+    color: #49454F;
+    font-size: 16px;
+    line-height: 180%;
+    letter-spacing: 1.2px;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+h2 {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #49454F;
+}
+
+#s-strong {
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    color: #49454F;
+    font-size: 16px;
+}
+
+img {
+    max-width: 120px;
+    padding: 20px;
+}
+
+button {
+    border: none;
+    background: none;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#logo {
+    max-width: 80px;
+}
+
+#searchJob {
+    border: 1px solid #79747e3c;
+    background-color: #fafaff;
+    height: 40px;
+}
+
+.btn-nav {
+    display: flex;
+    gap: 16px;
+}
+
+#workExperience,
+#internship,
+#education,
+#projects,
+#achievements,
+#interests,
+#skills,
+#profile-info,
+#info {
+    display: flex;
+    flex-direction: column;
+    padding: 28px;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+.results {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto;
+    gap: 28px 28px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "page-button page-button"
+        "profilepic profileinfo"
+        "info work"
+        "skill projects"
+        "interests education"
+        "none internship"
+        "none achievements";
+}
+
+.work {
+    grid-area: work;
+}
+
+.projects {
+    grid-area: projects;
+}
+
+.education {
+    grid-area: education;
+}
+
+.internship {
+    grid-area: internship;
+}
+
+.acheivements {
+    grid-area: acheivements;
+}
+
+.profilepic {
+    grid-area: profilepic;
+}
+
+.profileinfo {
+    grid-area: profileinfo;
+}
+
+.none {
+    grid-area: none;
+}
+
+.interests {
+    grid-area: interests;
+}
+
+.skill {
+    grid-area: skill;
+}
+
+.personal-info {
+    grid-area: personal-info;
+}
+
+.page-button {
+    grid-area: page-button;
+}
+
+.profile-pic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    border-radius: 8px;
+    padding: 80px;
+    background-color: white;
+}
+
+#resumeContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding-bottom: 40px;
+}
+
+.page-button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media (max-width: 767px) {
+    .results {
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+        gap: 16px 16px;
+        grid-auto-flow: column;
+        grid-template-areas:
+            "page-button"
+            "profilepic"
+            "profileinfo"
+            "info"
+            "work"
+            "projects"
+            "education"
+            "internship"
+            "achievements"
+            "interests"
+            "skills";
+    }
+
+    body {
+        overflow-x: hidden;
+        padding: 20px;
+    }
+
+    nav {
+        justify-content: space-between;
+    }
+
+    #resumeContainer {
+        display: flex;
+        flex-direction: column;
+        width: 95vw;
+        padding: 16px;
+    }
+}
